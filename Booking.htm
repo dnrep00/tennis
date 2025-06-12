@@ -2,7 +2,98 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>성남 테니스장 예약조회</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', sans-serif;
+      padding: 20px;
+      margin: 0;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select,
+    input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 20px;
+      }
+
+      button {
+        font-size: 16px;
+      }
+
+      select,
+      input[type="date"] {
+        font-size: 15px;
+      }
+    }
+  </style>
   <script>
     const courtMap = {
       '탄천': 'FAC17',
@@ -23,36 +114,37 @@
       }
 
       const facId = courtMap[court];
-      const formattedDate = date.replace(/-/g, '-');  // YYYY-MM-DD 그대로 사용
+      const formattedDate = date;  // 그대로 사용 (YYYY-MM-DD)
       const url = `https://res.isdc.co.kr/otherTimetable.do?facId=${facId}&resdate=${formattedDate}`;
 
       document.getElementById("result").innerHTML = `
-        <p>예약조회 링크: <a href="${url}" target="_blank">${url}</a></p>
+        <p>예약조회 링크:<br><a href="${url}" target="_blank">${url}</a></p>
       `;
 
-      // 새 탭에서 자동 열기
       window.open(url, '_blank');
     }
   </script>
 </head>
 <body>
-  <h2>성남시 테니스장 예약현황 조회</h2>
-  <label for="court">테니스장 선택:</label>
-  <select id="court">
-    <option value="">--선택--</option>
-    <option value="탄천">탄천</option>
-    <option value="대원">대원</option>
-    <option value="수내">수내</option>
-    <option value="양지">양지</option>
-    <option value="태평">태평</option>
-    <option value="야탑">야탑</option>
-  </select>
-  <br><br>
-  <label for="date">조회 날짜:</label>
-  <input type="date" id="date">
-  <br><br>
-  <button onclick="generateURL()">예약현황 조회</button>
-  <hr>
-  <div id="result"></div>
+  <div class="container">
+    <h2>성남시 테니스장 예약현황 조회</h2>
+    <label for="court">테니스장 선택</label>
+    <select id="court">
+      <option value="">-- 선택하세요 --</option>
+      <option value="탄천">탄천</option>
+      <option value="대원">대원</option>
+      <option value="수내">수내</option>
+      <option value="양지">양지</option>
+      <option value="태평">태평</option>
+      <option value="야탑">야탑</option>
+    </select>
+
+    <label for="date">조회 날짜</label>
+    <input type="date" id="date">
+
+    <button onclick="generateURL()">예약현황 조회</button>
+
+    <div id="result"></div>
+  </div>
 </body>
 </html>
