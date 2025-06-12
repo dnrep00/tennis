@@ -1,3 +1,58 @@
+<!DOCTYPE html>
 <html lang="ko">
-Hello
+<head>
+  <meta charset="UTF-8">
+  <title>성남 테니스장 예약조회</title>
+  <script>
+    const courtMap = {
+      '탄천': 'FAC17',
+      '대원': 'FAC59',
+      '수내': 'FAC65',
+      '양지': 'FAC79',
+      '태평': 'FAC96',
+      '야탑': 'FAC100'
+    };
+
+    function generateURL() {
+      const court = document.getElementById("court").value;
+      const date = document.getElementById("date").value;
+
+      if (!court || !date) {
+        alert("테니스장과 날짜를 모두 선택해주세요.");
+        return;
+      }
+
+      const facId = courtMap[court];
+      const formattedDate = date.replace(/-/g, '-');  // YYYY-MM-DD 그대로 사용
+      const url = `https://res.isdc.co.kr/otherTimetable.do?facId=${facId}&resdate=${formattedDate}`;
+
+      document.getElementById("result").innerHTML = `
+        <p>예약조회 링크: <a href="${url}" target="_blank">${url}</a></p>
+      `;
+
+      // 새 탭에서 자동 열기
+      window.open(url, '_blank');
+    }
+  </script>
+</head>
+<body>
+  <h2>성남시 테니스장 예약현황 조회</h2>
+  <label for="court">테니스장 선택:</label>
+  <select id="court">
+    <option value="">--선택--</option>
+    <option value="탄천">탄천</option>
+    <option value="대원">대원</option>
+    <option value="수내">수내</option>
+    <option value="양지">양지</option>
+    <option value="태평">태평</option>
+    <option value="야탑">야탑</option>
+  </select>
+  <br><br>
+  <label for="date">조회 날짜:</label>
+  <input type="date" id="date">
+  <br><br>
+  <button onclick="generateURL()">예약현황 조회</button>
+  <hr>
+  <div id="result"></div>
+</body>
 </html>
