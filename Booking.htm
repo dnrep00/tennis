@@ -123,6 +123,20 @@
 
       window.open(url, '_blank');
     }
+    
+    function setDefaultDate() {
+      const dateInput = document.getElementById("date");
+      const today = new Date();
+      const defaultDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3);
+      
+      const year = defaultDate.getFullYear();
+      const month = String(defaultDate.getMonth() + 1).padStart(2, '0');
+      const day = String(defaultDate.getDate()).padStart(2, '0');
+      
+      dateInput.value = ` - - `;
+    }
+
+    window.onload = setDefaultDate;    
   </script>
 </head>
 <body>
