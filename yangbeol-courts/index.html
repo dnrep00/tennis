@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>양벌 테니스 돔 · 코트 예약 현황</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI","Malgun Gothic",sans-serif;color:#183c35;background:#f5f7f4;font-synthesis:none;--green:#126749;--line:#dce5de}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button,a,input{touch-action:manipulation}button,a{ -webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:wait;opacity:.6}a{color:var(--green)}:focus-visible{outline:3px solid #d28f24;outline-offset:3px}
+.top{background:#103f32;color:#fff;padding:20px max(24px,calc((100vw - 1400px)/2));display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{font-size:14px;font-weight:700;letter-spacing:.04em}.top a{color:#d7ebdf;font-size:13px;text-decoration:none}.mark{display:inline-grid;place-items:center;width:27px;height:27px;border:1px solid #87b69a;border-radius:50%;margin-right:10px;color:#dcf5ac}
+main{max-width:1450px;margin:auto;padding:44px 24px 30px}.eyebrow{font-size:12px;letter-spacing:.13em;color:#698073;font-weight:700;margin:0 0 10px}h1{font-size:clamp(26px,3vw,38px);letter-spacing:-.06em;margin:0 0 12px}.intro{color:#61736b;margin:0;line-height:1.7;font-size:14px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:end}.pill{border:1px solid #d5e2d6;border-radius:30px;padding:8px 13px;font-size:12px;white-space:nowrap;color:#42644f;background:#ecf1e8}
+.panel{background:white;border:1px solid var(--line);border-radius:16px;margin-top:28px;box-shadow:0 5px 25px #183c3504}.controls{padding:24px;display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap}.date-label{display:block;font-size:12px;font-weight:700;margin-bottom:9px}.date-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}input[type=date]{border:1px solid #cad8ce;border-radius:8px;background:#fff;padding:10px 12px;min-height:44px;color:#183c35}button{border:1px solid #cad8ce;background:white;border-radius:8px;padding:10px 14px;min-height:44px;color:#294d3d;font-weight:600}.primary{background:var(--green);border-color:var(--green);color:white}.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px}.filters select{font:inherit;border:1px solid #cad8ce;border-radius:8px;background:white;padding:10px;color:inherit;min-height:44px}.check{display:flex;align-items:center;gap:7px;margin-right:12px;cursor:pointer}input[type=checkbox]{accent-color:var(--green);width:16px;height:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.stat{border:1px solid var(--line);border-radius:12px;padding:18px 22px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}.stat span{font-size:13px;color:#61736b}.stat strong{font-size:27px;letter-spacing:-.04em}.stat:first-child{background:#eaf4e8;border-color:#c9ddc7}.stat:first-child strong{color:#246240}
+.board{overflow:hidden;border:1px solid var(--line);border-radius:14px;background:white}.board-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 22px;border-bottom:1px solid var(--line);flex-wrap:wrap}h2{font-size:17px;margin:0;letter-spacing:-.03em}.updated{font-size:12px;color:#75857b;margin-top:6px}.legend{display:flex;gap:13px;flex-wrap:wrap;font-size:12px;color:#607367}.legend span{display:flex;align-items:center;gap:5px}.dot{width:8px;height:8px;border-radius:50%;background:#c9d1cc}.dot.available{background:#398449}.dot.booked{background:#86958d}.dot.lottery{background:#bb8a2b}.dot.unknown{background:#b76641}
+.table-wrap{overflow:auto;max-height:65vh}table{border-collapse:separate;border-spacing:0;width:100%;min-width:1200px;table-layout:fixed;font-size:12px}caption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}th,td{text-align:center;border-bottom:1px solid #edf0ec;border-right:1px solid #edf0ec;padding:12px 6px}thead th{position:sticky;top:0;background:#fafcf9;z-index:2;height:72px;font-weight:600}thead th:first-child{z-index:4}th:first-child{width:112px;position:sticky;left:0;background:#fafcf9;z-index:1}tbody th{font-variant-numeric:tabular-nums;font-size:12px}thead th a{text-decoration:none;font-size:13px}th small{display:block;color:#7b897f;font-size:10px;font-weight:400;margin-top:7px}tbody tr:last-child>*{border-bottom:0}th:last-child,td:last-child{border-right:0}.slot{display:block;border-radius:7px;padding:12px 2px;font-weight:650;text-decoration:none;line-height:1.4;font-size:11px;min-height:42px}.slot.available{color:#22613b;background:#e6f2df}.slot.available:hover{background:#d4e9c8;box-shadow:inset 0 0 0 1px #86b47a}.slot.booked{background:#f0f2f0;color:#7c8980;font-weight:500}.slot.unavailable,.slot.closed{color:#929a95;background:#fafbf9;font-weight:400}.slot.unknown{color:#9c5736;background:#fff1e8}.slot.lottery{color:#906b20;background:#fbf3d7}.slot small{display:block;font-size:10px;font-weight:400;margin-top:4px}.muted{color:#a1aaa4}.empty{padding:60px 24px;text-align:center;color:#708176;font-size:14px;line-height:1.8}.message{margin:0 0 16px;padding:14px 18px;border-radius:9px;background:#e9f0e9;color:#3c6148;line-height:1.7;font-size:13px}.message.error{background:#fff0e8;color:#9a4b28}.message[hidden],.empty[hidden],[hidden]{display:none!important}.loading{opacity:.45;pointer-events:none}.footnote{font-size:12px;color:#7b887f;line-height:1.9;margin:16px 2px}footer{border-top:1px solid var(--line);margin-top:32px;padding-top:18px;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#7b887f}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.week-strip,.court-groups,.group-note,.slot-short{display:none}.time-end::before{content:'–'}.date-nav{min-width:0}
+@media(max-width:700px){
+.top{padding:12px 16px}.top a{font-size:11px}.brand{font-size:12px}.mark{width:24px;height:24px;margin-right:6px}
+main{padding:24px 12px}.hero{display:block}h1{font-size:25px;margin-bottom:0}.eyebrow,.intro,.pill{display:none}
+.panel{position:sticky;top:0;z-index:10;margin-top:20px;border-radius:12px;box-shadow:0 4px 14px #183c350c}.controls{padding:12px;display:block}.date-label{display:none}.date-controls{display:grid;grid-template-columns:38px minmax(0,1fr) 38px 44px 44px;gap:5px;flex-wrap:nowrap}.date-controls button{padding:6px;min-height:44px;font-size:14px;white-space:nowrap}.date-controls input{width:100%;min-width:0;padding:8px 5px;font-size:14px;text-align:center}.date-controls #refresh{font-size:0}.date-controls #refresh::after{content:'↻';font-size:23px}.date-controls #refresh:disabled::after{content:'…'}
+.week-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;margin:10px 0}.week-strip button{border:0;border-radius:7px;padding:5px 0;min-height:52px;font-size:10px;font-weight:400;background:#f4f6f3}.week-strip button strong{display:block;font-size:13px;margin-top:4px}.week-strip button[aria-pressed=true]{background:#126749;color:white}.week-strip button:disabled{cursor:default}.filters{display:flex;justify-content:space-between;gap:4px;font-size:11px}.check{margin-right:0;gap:4px}.filters select{min-height:36px;padding:6px;max-width:175px;font-size:11px}.check input{margin-left:0}
+.stats{gap:6px;margin:12px 0}.stat{padding:10px 8px;display:block;border-radius:9px}.stat span{font-size:10px;display:block;margin-bottom:5px;line-height:1.4}.stat strong{font-size:19px}
+.court-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:12px 12px 0}.court-groups button{border:0;background:#f0f3ef;min-height:44px;border-radius:8px;padding:8px 2px;font-size:13px}.court-groups button[aria-pressed=true]{background:#126749;color:white}
+.board-head{padding:14px 12px;gap:12px}.board-head>div:first-child{width:100%}h2{font-size:16px}.updated{font-size:10px}.group-note{display:block;margin:7px 0 0;font-size:11px;color:#607367}.legend{gap:8px;font-size:10px}.dot{width:7px;height:7px}
+.table-wrap{overflow:visible;max-height:none}table{min-width:0;font-size:11px}th,td{padding:6px 2px}th:first-child{width:57px;position:static}thead th{position:static;height:60px}thead th a{font-size:11px}th small{font-size:9px;margin-top:5px;line-height:1.4;overflow-wrap:anywhere}tbody th{font-size:10px;font-weight:600}.time-start,.time-end{display:block}.time-end::before{content:''}.time-end{margin-top:3px;color:#78887d;font-size:9px}
+.slot{display:flex;min-height:44px;align-items:center;justify-content:center;flex-direction:column;padding:8px 0;border-radius:5px;font-size:10px;overflow-wrap:anywhere}.slot-label{display:none}.slot-short{display:inline}.slot small{font-size:8px;letter-spacing:-.03em;margin-top:3px}.empty{padding:36px 16px;font-size:12px}.message{font-size:12px;padding:10px 12px}.footnote{font-size:11px;line-height:1.8}footer{flex-direction:column;font-size:10px;margin-top:24px}.desktop-hint{display:none}
+}
+@media(max-width:380px){#today{display:none}.date-controls{grid-template-columns:34px minmax(0,1fr)34px 40px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand"><span class="mark" aria-hidden="true">↗</span>YANGBEOL TENNIS</div><a id="official" href="https://gjcenter.gjcs.or.kr/fmcs/3?center=GJCS03&amp;part=10&amp;place=25" target="_blank" rel="noopener noreferrer">공식 예약 사이트 ↗</a></header>
+<main>
+  <div class="hero"><div><p class="eyebrow">COURT AVAILABILITY</p><h1>양벌 테니스 돔 예약 현황</h1><p class="intro">날짜를 선택하고, 12개 코트의 빈 시간을 한눈에 확인하세요.</p></div><span class="pill">경기 광주 · 12 COURTS</span></div>
+  <section class="panel" aria-label="예약 현황 검색">
+    <form id="search" class="controls">
+      <div class="date-nav"><label class="date-label" for="date">이용 날짜</label><div class="date-controls"><button type="button" id="prev" aria-label="이전 날짜">←</button><input type="date" id="date" required min="2000-01-01" max="2100-12-31"><button type="button" id="next" aria-label="다음 날짜">→</button><button type="button" id="today">오늘</button><button type="submit" id="refresh" class="primary" aria-label="조회 및 새로고침">조회 / 새로고침</button></div></div>
+      <div class="week-strip" id="week-strip" role="group" aria-label="주간 날짜 선택"></div>
+      <div class="filters"><label class="check"><input type="checkbox" id="available-only">예약 가능만</label><label class="sr-only" for="period">시간대 필터</label><select id="period"><option value="all">모든 시간대</option><option value="morning">오전 (12시 이전 시작)</option><option value="afternoon">오후 (12~18시 시작)</option><option value="evening">야간 (18시 이후 시작)</option></select></div>
+    </form>
+  </section>
+  <div class="stats" aria-label="조회 결과 요약"><div class="stat"><span>예약 가능한 시간</span><strong id="available-count">—</strong></div><div class="stat"><span>빈 시간이 있는 코트</span><strong id="court-count">—</strong></div><div class="stat"><span>조회된 코트</span><strong id="loaded-count">—</strong></div></div>
+  <p id="message" class="message" role="status" aria-live="polite">예약 정보를 불러올 준비 중입니다.</p>
+  <section class="board" aria-labelledby="board-title" aria-busy="false" id="board">
+    <div class="court-groups" id="court-groups" role="group" aria-label="표시할 코트 묶음">
+      <button type="button" data-group="0" aria-pressed="true" aria-controls="schedule">1–4번</button>
+      <button type="button" data-group="1" aria-pressed="false" aria-controls="schedule">5–8번</button>
+      <button type="button" data-group="2" aria-pressed="false" aria-controls="schedule">9–12번</button>
+    </div>
+    <div class="board-head"><div><h2 id="board-title">코트별 시간표</h2><div id="updated" class="updated">조회 시점의 예약 현황입니다.</div><p id="group-note" class="group-note" aria-live="polite">1–4번 코트 · 요약 수치는 전체 12개 코트 기준</p></div><div class="legend" aria-label="상태 범례"><span><i class="dot available"></i>예약가능</span><span><i class="dot booked"></i>예약완료</span><span><i class="dot"></i>불가·휴관</span><span><i class="dot lottery"></i>추첨접수</span><span><i class="dot unknown"></i>미확인·오류</span></div></div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="코트별 예약 현황 표"><table id="schedule" hidden><caption>선택한 날짜의 시간대별 12개 코트 예약 현황</caption><thead id="head"></thead><tbody id="body"></tbody></table></div>
+    <div id="empty" class="empty">날짜별 예약 정보를 확인하고 있습니다.</div>
+  </section>
+  <p class="footnote">예약 가능한 칸이나 코트 이름을 누르면 해당 날짜의 공식 예약 페이지가 열립니다.<br>날짜의 접수 상태까지 확인하여 표시합니다. 실제 신청 가능 여부와 최종 요금은 공식 사이트에서 확인해 주세요. <span class="desktop-hint">PC에서는 12개 코트를 한 번에 비교할 수 있습니다.</span><span class="group-note">모바일에서는 위의 코트 묶음을 눌러 4개씩 비교할 수 있습니다.</span></p>
+  <footer><span>양벌 테니스 돔 · 개인용 조회 페이지</span><span>데이터 제공: 광주시스포츠통합센터 온라인예약시스템</span></footer>
+</main>
+<script>
+'use strict';
+// Local: leave blank. Separate hosting: set the HTTPS relay origin (without a trailing slash).
+const API_BASE = '';
+const $ = id => document.getElementById(id);
+let data = null;
+let controller = null;
+let requestId = 0;
+let courtGroup = 0;
+const mobileView = matchMedia('(max-width:700px)');
+function visibleCourts() { return mobileView.matches ? data.courts.slice(courtGroup * 4, courtGroup * 4 + 4) : data.courts; }
+function renderWeek(date) {
+  const base = new Date(date + 'T00:00:00Z');
+  const monday = new Date(base); monday.setUTCDate(base.getUTCDate() - (base.getUTCDay() + 6) % 7);
+  const buttons = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday); d.setUTCDate(monday.getUTCDate() + i);
+    const value = d.toISOString().slice(0, 10);
+    const b = element('button', ['월','화','수','목','금','토','일'][i]); b.type = 'button';
+    b.append(element('strong', String(d.getUTCDate())));
+    b.setAttribute('aria-label', dateLabel(value)); b.setAttribute('aria-pressed', String(value === date));
+    b.disabled = value < $('date').min || value > $('date').max;
+    b.addEventListener('click', () => { $('date').value = value; load(); });
+    return b;
+  });
+  $('week-strip').replaceChildren(...buttons);
+}
+function timeHeading(key) {
+  const th = element('th'); th.scope = 'row';
+  const [start, end] = key.split('~');
+  th.append(element('span', start, 'time-start'), element('span', end, 'time-end'));
+  th.setAttribute('aria-label', start + '부터 ' + end + '까지');
+  return th;
+}
+const seoulDate = () => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+const dateLabel = value => new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' }).format(new Date(value + 'T00:00:00+09:00'));
+function element(tag, text, className) { const el = document.createElement(tag); if (text !== undefined) el.textContent = text; if (className) el.className = className; return el; }
+function link(text, href, className) { const a = element('a', text, className); a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; }
+function showMessage(text, error = false) { $('message').textContent = text; $('message').className = 'message' + (error ? ' error' : ''); $('message').hidden = !text; }
+function periodMatches(slot) { const hour = Number(slot.start.split(':')[0]); return $('period').value === 'all' || ($('period').value === 'morning' && hour < 12) || ($('period').value === 'afternoon' && hour >= 12 && hour < 18) || ($('period').value === 'evening' && hour >= 18); }
+function render() {
+  if (!data) return;
+  const only = $('available-only').checked;
+  const courts = visibleCourts();
+  $('group-note').textContent = `${courtGroup * 4 + 1}–${courtGroup * 4 + 4}번 코트 · 요약 수치는 전체 12개 코트 기준`;
+  $('schedule').querySelector('caption').textContent = `${dateLabel(data.date)} · ${mobileView.matches ? courts[0].name + '부터 ' + courts.at(-1).name + '까지' : '전체 12개 코트'} 예약 현황`;
+  const all = data.courts.flatMap(c => c.slots.filter(periodMatches));
+  $('available-count').textContent = all.filter(s => s.status === 'available').length + '개';
+  $('court-count').textContent = data.courts.filter(c => c.slots.some(s => periodMatches(s) && s.status === 'available')).length + ' / 12';
+  $('loaded-count').textContent = data.courts.filter(c => !c.error).length + ' / 12';
+  $('board-title').textContent = dateLabel(data.date);
+  $('updated').textContent = '조회: ' + new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(new Date(data.updatedAt)) + ' · 최대 15초 캐시 · KST';
+  const head = element('tr');
+  const first = element('th', '이용 시간'); first.scope = 'col'; head.append(first);
+  for (const court of courts) { const th = element('th'); th.scope = 'col'; th.append(link(court.name + ' ↗', court.url), element('small', court.dayLabel)); head.append(th); }
+  $('head').replaceChildren(head);
+  const keys = [...new Set(courts.flatMap(c => c.slots.filter(periodMatches)).map(s => s.start + '~' + s.end))].sort();
+  const rows = [];
+  for (const key of keys) {
+    const slots = courts.map(c => c.slots.find(s => s.start + '~' + s.end === key));
+    if (only && !slots.some(s => s?.status === 'available')) continue;
+    const tr = element('tr'); tr.append(timeHeading(key));
+    slots.forEach((slot, index) => {
+      const court = courts[index]; const td = element('td');
+      if (court.error) { const item = element('span', '조회 실패', 'slot unknown'); item.title = court.error; td.append(item); }
+      else if (!slot) { td.append(element('span', court.dayStatus === 'closed' ? court.dayLabel : '—', 'slot ' + (court.dayStatus === 'closed' ? 'closed' : 'muted'))); }
+      else if (only && slot.status !== 'available') { td.append(element('span', '—', 'muted')); }
+      else {
+        const item = slot.status === 'available' ? link('', court.url, 'slot available') : element('span', '', 'slot ' + slot.status);
+        const shortLabel = { available: '가능', booked: '완료', unavailable: slot.label === '마감' ? '마감' : '불가', closed: '휴관', lottery: '추첨', unknown: '미확인' }[slot.status] || slot.label;
+        const short = element('span', shortLabel, 'slot-short'); short.setAttribute('aria-hidden', 'true');
+        item.append(element('span', slot.label, 'slot-label'), short);
+        item.setAttribute('aria-label', court.name + ' ' + key + ' ' + slot.label);
+        if (slot.amount !== null && ['available','lottery'].includes(slot.status)) item.append(element('small', slot.amount.toLocaleString('ko-KR') + '원'));
+        td.append(item);
+      }
+      tr.append(td);
+    });
+    rows.push(tr);
+  }
+  // Preserve court links and per-court day labels even on closure days without slots.
+  if (!keys.length && !only) {
+    const tr = element('tr'); const th = element('th', '날짜 상태'); th.scope = 'row'; tr.append(th);
+    courts.forEach(c => { const td = element('td'); td.append(element('span', c.error ? '조회 실패' : c.dayLabel, 'slot ' + (c.error ? 'unknown' : c.dayStatus))); tr.append(td); });
+    rows.push(tr);
+  }
+  $('body').replaceChildren(...rows);
+  $('schedule').hidden = !rows.length;
+  $('empty').hidden = !!rows.length;
+  $('empty').textContent = only ? (mobileView.matches ? '이 코트 묶음에는 예약 가능한 시간이 없습니다. 다른 묶음도 확인해 보세요.' : '선택한 조건에 예약 가능한 시간이 없습니다.') : '선택한 시간대의 정보가 없습니다.';
+}
+async function load() {
+  if (!$('date').reportValidity()) return;
+  const date = $('date').value;
+  renderWeek(date);
+  const id = ++requestId;
+  controller?.abort(); controller = new AbortController();
+  $('refresh').disabled = true; $('board').setAttribute('aria-busy', 'true');
+  // Clear the old date immediately, so a new query never shows the previous result.
+  data = null; $('schedule').hidden = true; $('empty').hidden = false; $('empty').textContent = '12개 코트의 예약 정보를 불러오고 있습니다…';
+  for (const name of ['available-count','court-count','loaded-count']) $(name).textContent = '—';
+  $('board-title').textContent = dateLabel(date); $('updated').textContent = '조회 중';
+  showMessage('선택한 날짜의 코트 정보를 확인하고 있습니다. 잠시만 기다려 주세요.');
+  try {
+    if (location.protocol === 'file:' && !API_BASE) throw new Error('로컬 서버를 먼저 실행한 뒤 http://localhost:8787 로 접속해 주세요.');
+    const timeout = AbortSignal.timeout(120000);
+    const response = await fetch(API_BASE + '/api/reservations?date=' + encodeURIComponent(date), { signal: AbortSignal.any([controller.signal, timeout]), cache: 'no-store' });
+    const type = response.headers.get('content-type') || '';
+    if (!type.includes('application/json')) throw new Error('조회 서버에 연결되지 않았습니다. 로컬 서버 실행 여부 또는 배포된 중계 주소를 확인해 주세요.');
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || '조회에 실패했습니다.');
+    if (id !== requestId) return;
+    data = payload;
+    const url = new URL(location.href); url.searchParams.set('date', date); history.replaceState(null, '', url);
+    $('official').href = data.courts[0].url;
+    const failed = data.courts.filter(c => c.error);
+    const missing = data.courts.filter(c => !c.error && c.dayLabel === '날짜 상태 미확인');
+    showMessage(failed.length ? failed.map(c => c.name + ': ' + c.error).join(' / ') : missing.length ? '일부 코트의 날짜 접수 상태를 확인하지 못했습니다. 해당 칸은 예약 가능으로 표시하지 않습니다.' : '', !!failed.length);
+    render();
+  } catch (error) {
+    if (id !== requestId) return;
+    showMessage(error.name === 'TimeoutError' ? '조회 시간이 초과되었습니다. 잠시 후 다시 조회해 주세요.' : error.message === 'Failed to fetch' ? '조회 서버에 연결할 수 없습니다. 서버 실행 상태와 네트워크를 확인해 주세요.' : error.message, true);
+    $('empty').textContent = '정보를 불러오지 못했습니다. 조회 / 새로고침으로 다시 시도해 주세요.'; $('updated').textContent = '조회 실패';
+  } finally {
+    if (id === requestId) { $('refresh').disabled = false; $('board').setAttribute('aria-busy', 'false'); }
+  }
+}
+$('search').addEventListener('submit', event => { event.preventDefault(); load(); });
+$('date').addEventListener('change', load);
+function shiftDate(amount) { if (!$('date').reportValidity()) return; const d = new Date($('date').value + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + amount); const value = d.toISOString().slice(0,10); if (value < $('date').min || value > $('date').max) return; $('date').value = value; load(); }
+$('prev').addEventListener('click', () => shiftDate(-1)); $('next').addEventListener('click', () => shiftDate(1));
+$('today').addEventListener('click', () => { $('date').value = seoulDate(); load(); });
+$('court-groups').addEventListener('click', event => {
+  const button = event.target.closest('button[data-group]'); if (!button) return;
+  courtGroup = Number(button.dataset.group);
+  for (const b of $('court-groups').querySelectorAll('button')) b.setAttribute('aria-pressed', String(b === button));
+  render();
+});
+mobileView.addEventListener('change', render);
+$('available-only').addEventListener('change', render); $('period').addEventListener('change', render);
+const initialDate = new URL(location.href).searchParams.get('date');
+$('date').value = initialDate && /^\d{4}-\d{2}-\d{2}$/.test(initialDate) ? initialDate : seoulDate();
+if (!$('date').value || !$('date').validity.valid) $('date').value = seoulDate();
+load();
+</script>
+</body>
+</html>
