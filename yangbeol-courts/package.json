@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
-    "start": "node --use-system-ca server.mjs",
-    "test": "node --test --test-isolation=none"
+    "start": "node --use-system-ca server.mjs"
   }
 }
