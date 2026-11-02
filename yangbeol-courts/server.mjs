@@ -46,4 +46,4 @@ server.on('error', error => {
   console.error(error.code === 'EADDRINUSE' ? `${port} 포트가 사용 중입니다. 기존 서버를 종료하거나 PORT 환경변수를 바꾸세요.` : error.message);
   process.exitCode = 1;
 });
-server.listen(port, '127.0.0.1', () => console.log(`양벌 테니스 돔 예약 현황: http://localhost:${port}\n종료: Ctrl+C`));
+server.listen(port, '0.0.0.0', () => console.log(`양벌 테니스 돔 예약 현황: http://localhost:${port}\n종료: Ctrl+C`));
