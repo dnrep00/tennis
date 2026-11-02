@@ -43,6 +43,20 @@ export function normalizeCourt(court, date, times, months) {
   };
 }
 
+export function upstreamErrorMessage(error) {
+  const code = String(error.cause?.code || error.code || '');
+  if (/CERT|UNABLE_TO_VERIFY|SELF_SIGNED|ISSUER/.test(code)) {
+    return `예약 사이트의 TLS 인증서를 검증하지 못했습니다 (${code}).`;
+  }
+  if (/TIMEOUT|ETIMEDOUT/.test(code) || /Timeout|Abort/.test(error.name) || /timeout|aborted/i.test(error.message)) {
+    return `예약 사이트 연결 시간이 초과되었습니다${code ? ' (' + code + ')' : ''}.`;
+  }
+  if (error.message === 'fetch failed') {
+    return `예약 사이트에 연결하지 못했습니다${code ? ' (' + code + ')' : ''}.`;
+  }
+  return error.message;
+}
+
 export function createReservationService({ fetchImpl = fetch, now = () => Date.now(), ttl = 15000 } = {}) {
   const cache = new Map();
   const pending = new Map();
@@ -59,6 +73,7 @@ export function createReservationService({ fetchImpl = fetch, now = () => Date.n
 
   async function scan(date) {
     const courts = [];
+    const reported = new Set();
     for (let offset = 0; offset < COURTS.length; offset += 3) {
       const batch = await Promise.all(COURTS.slice(offset, offset + 3).map(async court => {
         try {
@@ -68,9 +83,12 @@ export function createReservationService({ fetchImpl = fetch, now = () => Date.n
           ]);
           return normalizeCourt(court, date, times, months);
         } catch (error) {
-          const message = /certificate|fetch failed/i.test(error.message)
-            ? '예약 사이트 연결에 실패했습니다. 네트워크와 시스템 인증서를 확인해 주세요.'
-            : /timeout|aborted/i.test(error.message) ? '예약 사이트 응답 시간이 초과되었습니다.' : error.message;
+          const message = upstreamErrorMessage(error);
+          const code = String(error.cause?.code || error.code || error.name);
+          if (!reported.has(code + message)) {
+            reported.add(code + message);
+            console.error('[reservation-upstream]', JSON.stringify({ date, court: court.id, code, message: error.message, cause: error.cause?.message || null }));
+          }
           return { ...court, url: sourceUrl(date, court.id), dayLabel: '조회 실패', dayStatus: 'unknown', slots: [], error: message };
         }
       }));
